@@ -28,23 +28,40 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'SIG',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        //['label' => 'Home', 'url' => ['/site/index']],
     ];
+
+    
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+    $menuItems = [
+        //['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'ADMINISTRACION', 
+          'items' =>[
+              ['label' => 'Estudiantes', 'url' => ['/estudiante'],],
+              ['label' => 'Docentes', 'url' => ['/docentes'],],
+                 '<li class="divider"></li>',
+                 '<li class="dropdown-header"><strong>ENFERMERIA</strong></li>',
+                 '<li class="divider"></li>',
+              ['label' => 'Enfermedades', 'url' => ['/enfermedades'],],
+              
+          ],
+        ],    
+        ];
+
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
+                ['class' => 'btn btn-link logout text-capitalize']
             )
             . Html::endForm()
             . '</li>';

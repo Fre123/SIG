@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -37,6 +37,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -45,6 +46,20 @@ return [
             ],
         ],
         */
+       'user' => [
+            'identityClass' => 'dektrium\user\models\User',
+            'enableAutoLogin' => true,
+        ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin','fre', 'isAdmin']
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
     ],
     'params' => $params,
 ];

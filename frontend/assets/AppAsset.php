@@ -12,7 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-       // 'css/site.css',
+        //'css/site.css',
         'vendors/bootstrap/dist/css/bootstrap.min.css',
         'vendors/font-awesome/css/font-awesome.min.css',
         'vendors/nprogress/nprogress.css',
@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
-        'vendors/jquery/dist/jquery.min.js',
+        //'vendors/jquery/dist/jquery.min.js',
         'vendors/bootstrap/dist/js/bootstrap.min.js',
         'vendors/fastclick/lib/fastclick.js',
         'vendors/nprogress/nprogress.js',
@@ -36,7 +36,7 @@ class AppAsset extends AssetBundle
         'vendors/Flot/jquery.flot.js',
         'vendors/Flot/jquery.flot.pie.js',
         'vendors/Flot/jquery.flot.time.js',
-        '/vendors/Flot/jquery.flot.stack.j',
+        //'vendors/Flot/jquery.flot.stack.j',
         'vendors/Flot/jquery.flot.resize.js',
         'vendors/flot.orderbars/js/jquery.flot.orderBars.js',
         'vendors/flot-spline/js/jquery.flot.spline.min.js',
