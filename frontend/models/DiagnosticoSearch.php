@@ -1,16 +1,16 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Escuela;
+use frontend\models\Diagnostico;
 
 /**
- * EscuelaSearch represents the model behind the search form about `backend\models\Escuela`.
+ * DiagnosticoSearch represents the model behind the search form about `frontend\models\Diagnostico`.
  */
-class EscuelaSearch extends Escuela
+class DiagnosticoSearch extends Diagnostico
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class EscuelaSearch extends Escuela
     public function rules()
     {
         return [
-            [['ID_ESCUELA'], 'integer'],
-            [['NOMBRE_ESCUELA'], 'safe'],
+            [['ID_DIAGNOSTICO'], 'integer'],
+            [['DESCRIPCION_DIAGNOSTICO'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class EscuelaSearch extends Escuela
      */
     public function search($params)
     {
-        $query = Escuela::find();
+        $query = Diagnostico::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +59,10 @@ class EscuelaSearch extends Escuela
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID_ESCUELA' => $this->ID_ESCUELA,
+            'ID_DIAGNOSTICO' => $this->ID_DIAGNOSTICO,
         ]);
 
-        $query->andFilterWhere(['like', 'NOMBRE_ESCUELA', $this->NOMBRE_ESCUELA]);
+        $query->andFilterWhere(['like', 'DESCRIPCION_DIAGNOSTICO', $this->DESCRIPCION_DIAGNOSTICO]);
 
         return $dataProvider;
     }

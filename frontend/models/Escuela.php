@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -12,7 +12,8 @@ use Yii;
  *
  * @property Docentes[] $docentes
  * @property Estudiante[] $estudiantes
- * @property Proyecto[] $proyectos
+ * @property Posee[] $posees
+ * @property Proyecto[] $iDPROYECTOs
  */
 class Escuela extends \yii\db\ActiveRecord
 {
@@ -66,8 +67,16 @@ class Escuela extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProyectos()
+    public function getPosees()
     {
-        return $this->hasMany(Proyecto::className(), ['ID_ESCUELA' => 'ID_ESCUELA']);
+        return $this->hasMany(Posee::className(), ['ID_ESCUELA' => 'ID_ESCUELA']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDPROYECTOs()
+    {
+        return $this->hasMany(Proyecto::className(), ['ID_PROYECTO' => 'ID_PROYECTO'])->viaTable('posee', ['ID_ESCUELA' => 'ID_ESCUELA']);
     }
 }

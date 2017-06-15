@@ -13,6 +13,7 @@ AppAsset::register($this);
 
 $asset = frontend\assets\AppAsset::register($this);
 $baseUrl = $asset->baseUrl;
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -88,7 +89,7 @@ $baseUrl = $asset->baseUrl;
    <?php }else {   ?>
         
         
-   <?= $this->render('inicio.php', ['baseUrl' => $baseUrl]) ?>
+   <?= $this->render('inicio.php', ['baseUrl' => $baseUrl, 'content' => $content]) ?>
           
    <?php } ?>
 

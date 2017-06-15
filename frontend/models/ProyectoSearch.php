@@ -1,16 +1,16 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Escuela;
+use frontend\models\Proyecto;
 
 /**
- * EscuelaSearch represents the model behind the search form about `backend\models\Escuela`.
+ * ProyectoSearch represents the model behind the search form about `frontend\models\Proyecto`.
  */
-class EscuelaSearch extends Escuela
+class ProyectoSearch extends Proyecto
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class EscuelaSearch extends Escuela
     public function rules()
     {
         return [
-            [['ID_ESCUELA'], 'integer'],
-            [['NOMBRE_ESCUELA'], 'safe'],
+            [['ID_PROYECTO'], 'integer'],
+            [['NOMBRE_PROYECTO', 'ESTADO_CUMPLIMIENTO_PROYECTO', 'FECHA_INICIO_PROYECTO', 'FECHA_FIN_PROYECTO'], 'safe'],
+            [['PORCENTAJE_EJECUCION_PROYECTO'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class EscuelaSearch extends Escuela
      */
     public function search($params)
     {
-        $query = Escuela::find();
+        $query = Proyecto::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +60,14 @@ class EscuelaSearch extends Escuela
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID_ESCUELA' => $this->ID_ESCUELA,
+            'ID_PROYECTO' => $this->ID_PROYECTO,
+            'FECHA_INICIO_PROYECTO' => $this->FECHA_INICIO_PROYECTO,
+            'FECHA_FIN_PROYECTO' => $this->FECHA_FIN_PROYECTO,
+            'PORCENTAJE_EJECUCION_PROYECTO' => $this->PORCENTAJE_EJECUCION_PROYECTO,
         ]);
 
-        $query->andFilterWhere(['like', 'NOMBRE_ESCUELA', $this->NOMBRE_ESCUELA]);
+        $query->andFilterWhere(['like', 'NOMBRE_PROYECTO', $this->NOMBRE_PROYECTO])
+            ->andFilterWhere(['like', 'ESTADO_CUMPLIMIENTO_PROYECTO', $this->ESTADO_CUMPLIMIENTO_PROYECTO]);
 
         return $dataProvider;
     }

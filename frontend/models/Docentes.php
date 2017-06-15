@@ -1,9 +1,9 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
-use common\models\Escuela;
+
 /**
  * This is the model class for table "docentes".
  *

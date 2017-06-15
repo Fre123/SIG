@@ -1,16 +1,16 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Escuela;
+use frontend\models\EstudianteProyecto;
 
 /**
- * EscuelaSearch represents the model behind the search form about `backend\models\Escuela`.
+ * EstudianteProyectoSearch represents the model behind the search form about `frontend\models\EstudianteProyecto`.
  */
-class EscuelaSearch extends Escuela
+class EstudianteProyectoSearch extends EstudianteProyecto
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class EscuelaSearch extends Escuela
     public function rules()
     {
         return [
-            [['ID_ESCUELA'], 'integer'],
-            [['NOMBRE_ESCUELA'], 'safe'],
+            [['ID_PROYECTO', 'ID_ESTUDIANTE', 'HORAS'], 'integer'],
+            [['FECHA_REGISTRO'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class EscuelaSearch extends Escuela
      */
     public function search($params)
     {
-        $query = Escuela::find();
+        $query = EstudianteProyecto::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +59,11 @@ class EscuelaSearch extends Escuela
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID_ESCUELA' => $this->ID_ESCUELA,
+            'ID_PROYECTO' => $this->ID_PROYECTO,
+            'ID_ESTUDIANTE' => $this->ID_ESTUDIANTE,
+            'FECHA_REGISTRO' => $this->FECHA_REGISTRO,
+            'HORAS' => $this->HORAS,
         ]);
-
-        $query->andFilterWhere(['like', 'NOMBRE_ESCUELA', $this->NOMBRE_ESCUELA]);
 
         return $dataProvider;
     }
