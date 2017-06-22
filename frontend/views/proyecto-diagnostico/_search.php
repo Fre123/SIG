@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\EstudianteProyectoSearch */
+/* @var $model frontend\models\ProyectoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="estudiante-proyecto-search">
+<div class="proyecto-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,11 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ID_PROYECTO') ?>
 
-    <?= $form->field($model, 'ID_ESTUDIANTE') ?>
+    <?= $form->field($model, 'NOMBRE_PROYECTO') ?>
 
-    <?= $form->field($model, 'FECHA_REGISTRO') ?>
+    <?= $form->field($model, 'ESTADO_CUMPLIMIENTO_PROYECTO') ?>
 
-    <?= $form->field($model, 'HORAS') ?>
+    <?= $form->field($model, 'FECHA_INICIO_PROYECTO') ?>
+
+    <?= $form->field($model, 'FECHA_FIN_PROYECTO') ?>
+
+    <?php // echo $form->field($model, 'PORCENTAJE_EJECUCION_PROYECTO') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

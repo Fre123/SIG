@@ -5,12 +5,12 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\EstudianteProyecto;
+use frontend\models\Proyecto;
 
 /**
- * EstudianteProyectoSearch represents the model behind the search form about `frontend\models\EstudianteProyecto`.
+ * ProyectoSearch represents the model behind the search form about `frontend\models\Proyecto`.
  */
-class EstudianteProyectoSearch extends EstudianteProyecto
+class ProyectoSearch extends Proyecto
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class EstudianteProyectoSearch extends EstudianteProyecto
     public function rules()
     {
         return [
-            [['ID_PROYECTO', 'ID_ESTUDIANTE', 'HORAS'], 'integer'],
-            [['FECHA_REGISTRO'], 'safe'],
+            [['ID_PROYECTO'], 'integer'],
+            [['NOMBRE_PROYECTO', 'ESTADO_CUMPLIMIENTO_PROYECTO', 'FECHA_INICIO_PROYECTO', 'FECHA_FIN_PROYECTO'], 'safe'],
+            [['PORCENTAJE_EJECUCION_PROYECTO'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class EstudianteProyectoSearch extends EstudianteProyecto
      */
     public function search($params)
     {
-        $query = EstudianteProyecto::find();
+        $query = Proyecto::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +61,13 @@ class EstudianteProyectoSearch extends EstudianteProyecto
         // grid filtering conditions
         $query->andFilterWhere([
             'ID_PROYECTO' => $this->ID_PROYECTO,
-            'ID_ESTUDIANTE' => $this->ID_ESTUDIANTE,
-            'FECHA_REGISTRO' => $this->FECHA_REGISTRO,
-            'HORAS' => $this->HORAS,
+            'FECHA_INICIO_PROYECTO' => $this->FECHA_INICIO_PROYECTO,
+            'FECHA_FIN_PROYECTO' => $this->FECHA_FIN_PROYECTO,
+            'PORCENTAJE_EJECUCION_PROYECTO' => $this->PORCENTAJE_EJECUCION_PROYECTO,
         ]);
+
+        $query->andFilterWhere(['like', 'NOMBRE_PROYECTO', $this->NOMBRE_PROYECTO])
+            ->andFilterWhere(['like', 'ESTADO_CUMPLIMIENTO_PROYECTO', $this->ESTADO_CUMPLIMIENTO_PROYECTO]);
 
         return $dataProvider;
     }

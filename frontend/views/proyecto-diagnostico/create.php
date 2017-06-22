@@ -4,18 +4,19 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\EstudianteProyecto */
+/* @var $model frontend\models\Proyecto */
 
-$this->title = 'Create Estudiante Proyecto';
-$this->params['breadcrumbs'][] = ['label' => 'Estudiante Proyectos', 'url' => ['index']];
+$this->title = 'Creación de Proyectos';
+$this->params['breadcrumbs'][] = ['label' => 'Proyectos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="estudiante-proyecto-create">
+<div class="proyecto-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelLugar' => $modelLugar,
     ]) ?>
 
 </div>
